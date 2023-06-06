@@ -8,9 +8,10 @@ import org.junit.runner.RunWith;
 @CucumberOptions (
 
         features="src/test/resources",
-        glue= "stepdefinitions",
+        glue= {"stepdefinitions","hooks"},
         tags="@e2e",
-        dryRun= true
+        dryRun= false
+
 )
 
 

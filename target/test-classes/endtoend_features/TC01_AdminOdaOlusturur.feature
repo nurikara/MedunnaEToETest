@@ -4,15 +4,15 @@ Feature: Medunna Room Creation
   Background: Sign in Medunna
 
     Given go to "medunnaurl"
-
-    When click on user icon
-    And click sign in option
+    And click on user icin
+    And click on signin options
     And send username into username input
     And send password into password input
     And click on sign in submit button
 
 
   Scenario Outline: Create Room
+
     When Click on ItemsAndTitels
     And click on Room option
     And click on Create a new room button
@@ -24,5 +24,5 @@ Feature: Medunna Room Creation
     And click on Save button
     And close the application
     Examples:
-      | room_number | price | description                 |
-      | 72244940    | 123   | Created For End To End Test |
+      | room_number | price | description                |
+      | 72244940    | 123   | Deniz manzarali havali oda |
