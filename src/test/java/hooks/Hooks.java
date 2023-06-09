@@ -7,7 +7,7 @@ import static baseUrls.MeddunnaBaseUrl.setUp;
 
 public class Hooks {
 
-    @Before
+    @Before("@api")
     public void beforeApi(){
 
         setUp();

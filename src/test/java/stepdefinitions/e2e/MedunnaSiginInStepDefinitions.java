@@ -1,4 +1,4 @@
-package stepdefinitions;
+package stepdefinitions.e2e;
 
 import io.cucumber.java.en.Given;
 import pages.MedunnaHomePage;

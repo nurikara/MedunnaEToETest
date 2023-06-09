@@ -1,5 +1,5 @@
 
-package stepdefinitions;
+package stepdefinitions.e2e;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -8,7 +8,7 @@ import pojos.RoomPojo;
 import java.sql.*;
 
 import static org.junit.Assert.assertEquals;
-import static stepdefinitions.MedunnaRoomCreationsStepDefinitions.faker;
+import static stepdefinitions.e2e.MedunnaRoomCreationsStepDefinitions.roomNumberFaker;
 
 public class DataBaseRoomStepDefs {
     Connection connection;
@@ -25,12 +25,12 @@ public class DataBaseRoomStepDefs {
     @Then("read room and validate")
     public void read_room_and_validate() throws SQLException {
         //3. Adım: query çalıştır
-        String sqlQuery = "SELECT * FROM room WHERE room_number = "+faker;
+        String sqlQuery = "SELECT * FROM room WHERE room_number = "+ roomNumberFaker;
 
         ResultSet resultSet = statement.executeQuery(sqlQuery);//Query ile çağrılan data resultSet içerisinde yer alacak.
         resultSet.next();
 
-        RoomPojo expectedData = new RoomPojo(faker, "PREMIUM_DELUXE", true, 123.00, "Deniz manzarali havali oda");
+        RoomPojo expectedData = new RoomPojo(roomNumberFaker, "PREMIUM_DELUXE", true, 123.00, "Deniz manzarali havali oda");
 
 
         String roomType = resultSet.getString("room_type");

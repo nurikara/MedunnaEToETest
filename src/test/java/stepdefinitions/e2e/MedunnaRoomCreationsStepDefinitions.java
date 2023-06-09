@@ -1,4 +1,4 @@
-package stepdefinitions;
+package stepdefinitions.e2e;
 
 import com.github.javafaker.Faker;
 import io.cucumber.java.en.When;
@@ -11,7 +11,7 @@ import utilities.Driver;
 public class MedunnaRoomCreationsStepDefinitions {
     MedunnaRoomPage medunnaRoomPage = new MedunnaRoomPage();
     MedunnaHomePage medunnaHomePage = new MedunnaHomePage();
-    public static int faker;
+    public static int roomNumberFaker;
    public static String roomId;
 
     @When("Click on ItemsAndTitels")
@@ -38,8 +38,8 @@ public class MedunnaRoomCreationsStepDefinitions {
     @When("enter {string} room number input")
     public void enter_room_number_input(String string) {
 
-        faker = Faker.instance().number().numberBetween(100000, 1000000);
-        medunnaRoomPage.roomNumberInput.sendKeys(faker + "");
+        roomNumberFaker = Faker.instance().number().numberBetween(100000, 1000000);
+        medunnaRoomPage.roomNumberInput.sendKeys(roomNumberFaker + "");
 
     }
 
@@ -64,7 +64,7 @@ public class MedunnaRoomCreationsStepDefinitions {
     @When("enter {string} in Description input")
     public void enter_in_description_input(String string) throws InterruptedException {
 
-        medunnaRoomPage.descriptionInput.sendKeys(string, Keys.ENTER);
+        medunnaRoomPage.descriptionInput.sendKeys(string , Keys.ENTER);
         Thread.sleep(2000);
        roomId = medunnaRoomPage.allert.getText().replaceAll("[^0-9]","");
 

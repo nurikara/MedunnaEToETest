@@ -1,18 +1,17 @@
-package stepdefinitions;
 
 
+package stepdefinitions.e2e;
 import io.cucumber.core.internal.com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.core.internal.com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.java.en.*;
 import io.restassured.response.Response;
-import org.junit.Assert;
 import pojos.RoomPojo;
 
 import static baseUrls.MeddunnaBaseUrl.spec;
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
-import static stepdefinitions.MedunnaRoomCreationsStepDefinitions.faker;
-import static stepdefinitions.MedunnaRoomCreationsStepDefinitions.roomId;
+import static stepdefinitions.e2e.MedunnaRoomCreationsStepDefinitions.roomNumberFaker;
+import static stepdefinitions.e2e.MedunnaRoomCreationsStepDefinitions.roomId;
 
 
 public class ApiRoomStepDefinitions {
@@ -37,10 +36,10 @@ public class ApiRoomStepDefinitions {
     @When("validate body")
     public void validate_body() {
 
-        Object roomType = response.jsonPath().getList("findAll{it.roomNumber=="+faker+"}.roomType").get(0);
-        Object status = response.jsonPath().getList("findAll{it.roomNumber=="+faker+"}.status").get(0);
-        Object price = response.jsonPath().getList("findAll{it.roomNumber=="+faker+"}.price").get(0);
-        Object description = response.jsonPath().getList("findAll{it.roomNumber=="+faker+"}.description").get(0);
+        Object roomType = response.jsonPath().getList("findAll{it.roomNumber=="+ roomNumberFaker +"}.roomType").get(0);
+        Object status = response.jsonPath().getList("findAll{it.roomNumber=="+ roomNumberFaker +"}.status").get(0);
+        Object price = response.jsonPath().getList("findAll{it.roomNumber=="+ roomNumberFaker +"}.price").get(0);
+        Object description = response.jsonPath().getList("findAll{it.roomNumber=="+ roomNumberFaker +"}.description").get(0);
 
         assertEquals(200, response.getStatusCode());
         assertEquals("PREMIUM_DELUXE", roomType);
@@ -57,7 +56,7 @@ public class ApiRoomStepDefinitions {
         spec.pathParams("first", "api", "second", "rooms","third",roomId );
 
         //Set the expected data
-        expectedData = new RoomPojo(faker,"PREMIUM_DELUXE",true,123.00,"Deniz manzarali havali oda");
+        expectedData = new RoomPojo(roomNumberFaker,"PREMIUM_DELUXE",true,123.00,"Deniz manzarali havali oda");
 
         //Send the request and get the response
         response = given(spec).get("{first}/{second}/{third}");
